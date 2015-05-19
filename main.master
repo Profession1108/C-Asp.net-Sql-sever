@@ -1,0 +1,118 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="main.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+<script type ="text/javascript">
+    function linkairport() {
+        var Loginsuccess = '<%= Session["Login"].ToString()%>';   
+        if (Loginsuccess == "1") {
+            window.location.href = "googlemap.aspx";
+        } else {
+            alert("你尚未登入");
+        }
+    }
+    function linkregistration() {
+        var Loginsuccess = '<%= Session["Registration"].ToString()%>';
+        if (Loginsuccess == "1") {
+            window.location.href = "Registration.aspx";
+        } else {
+            alert("你尚未登入");
+        }
+    }
+</script>
+<style type="text/css">
+    a { 
+       text-decoration:none; 
+       outline:0;
+       font-size:20px;
+    } 
+    .Screen { 
+        left:0px;
+        top:0px;
+        overflow:hidden;
+        height: 292px;
+        width: 1348px;
+        background: url("images/001.gif") repeat-x;
+        background-color:white; 
+        font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
+    }
+    .Content {
+            top:89px;
+            left:233px;
+            width:1086px; 
+            height:16px; 
+            min-height:525px; 
+            background-color:lightskyblue; 
+            color:#444;
+     }
+    .Menu{ 
+        overflow:hidden; 
+        list-style:none; 
+        margin:0; 
+        padding:0;
+    }
+    .Menu li{ 
+        float:left;
+    }
+    .Menu a{        	
+        display:block; 
+        color:#666; 
+        font-weight:bold;
+        padding:0 1em; 
+        line-height:135px;
+        position:relative;
+    }
+    .Menu a span{
+	   display:block;
+       position:absolute;
+       background:#09F;
+       color:#F90; 
+       font-size: 10px;
+       height:135px; 
+       width:100%;   
+       top:-132px;
+       left:0;
+       z-index:-1;
+    }
+    .Menu a:hover{ 
+        color:#FFF;
+        padding-top:20px;
+        margin-bottom:-20px; 
+    }
+    .Menu a:hover span{ 
+        top:0;
+    }
+</style>  
+</head>
+<body class = "Screen">
+    <form id="form1" runat="server">
+    <div>        
+      <header>
+        <nav>
+          <ul class = "Menu">
+            <li>
+              <a href="#" onclick= "linkairport();" title ="Airport">Airport<span></span></a>
+            </li>
+            <li>
+              <a href ="#" onclick= "linkregistration();" title="REGISTRATION">REGISTRATION<span></span></a>
+            </li>  
+            <li>
+              <a href ="Login.aspx" title ="Login">Login in/out<span></span></a>
+            </li>
+          </ul>
+        </nav>
+      </header> 
+    </div>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
